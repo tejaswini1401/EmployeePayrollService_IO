@@ -1,5 +1,7 @@
 package com.payrollFileHandling;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,6 +35,17 @@ public class EmployeePayrollService {
 	
 	private void writeEmployeePayrollData() {
 		System.out.println("\nWriting employee payroll service data:\n" + employeePayrollList);
+	}
+	
+	public static boolean deleteFiles(File file) throws IOException {
+	   File[] allContents = file.listFiles();
+	   
+	   if(allContents != null) {
+		   for(File file1 : allContents) {
+			   deleteFiles(file1);
+		   }
+	   }
+	   return file.delete();
 	}
 	
 	public static void main(String[] args) {
